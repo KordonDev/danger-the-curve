@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Danger the Curve!</title>
+		<style>
+			.container {
+				height: 520px;
+				position: relative;
+			}
+
+			canvas {
+				border: 1px solid black;
+				float: left;
+			}
+
+			.state {
+				float: left;
+				padding: 20px;
+			}
+
+			.player {
+				border-radius: 9999px;
+				position: absolute;
+			}
+
+			textarea {
+				width: 500px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper"></div>
+		<textarea id="config">
+{
+	"players": [{
+		"controls": ["a", "d"],
+		"color": "#FF0000",
+		"controlled": true,
+		"radius": 4,
+		"speed": 1,
+		"steering": 0.02,
+		"gapLength": 40,
+		"name": "reddy",
+		"noGapLength": 100
+	}, {
+		"controls": ["ArrowLeft", "ArrowRight"],
+		"color": "#00FF00",
+		"controlled": true,
+		"radius": 4,
+		"speed": 1,
+		"name": "greeny",
+		"steering": 0.02,
+		"gapLength": 40,
+		"noGapLength": 100
+	}]
+}
+		
+		</textarea>
+		<button id="start">Start da game!</button>
+		<script src="system.js"></script>
+		<script>
+			// set our baseURL reference path
+			SystemJS.config({
+				baseURL: '/src',
+				defaultJSExtensions: true,
+				packages: {
+				    app: {
+					format: 'cjs',
+					defaultExtension: 'js'
+				    }
+				}
+			});
+
+			// loads /js/main.js
+			SystemJS.import('main');
+  		</script>
+	</body>
+</html>
