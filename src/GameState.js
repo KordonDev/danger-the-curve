@@ -1,14 +1,17 @@
 'use strict';
 
 const Player = require('./Player');
+const ItemManager = require('./ItemManager');
 
 const TICK_TIME = 1000 / 60;
+const SPAWN_STEP_RATE = 0.1;
 
 class GameState {
 	constructor(options) {
 		this.options = options;
 		this.hitMap = new Uint8Array(options.size[0] * options.size[1]);
 		this.players = this.options.players.map((playerConfig, i) => { return new Player(playerConfig, this, i + 1); });
+		this.itemManager = new ItemManager(options.items, this);
 		this._registerKeymap();
 		this._registerCanvas();
 		this._registerStateDisplay();
@@ -73,6 +76,10 @@ class GameState {
 
 		for(let i = 0; i < this.players.length; i++) {
 			this.players[i].tick(ticks);
+		}
+
+		if(Math.random() < SPAWN_STEP_RATE) {
+			this.itemManager.spawn();
 		}
 
 		this.timestamp = newTimestamp;

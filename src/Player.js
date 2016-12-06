@@ -1,6 +1,6 @@
 'use strict';
 
-const SPAWN_PADDING = 50;
+const SPAWN_PADDING = 100;
 
 class Player {
 	constructor(options, gameState, index) {
@@ -115,6 +115,10 @@ class Player {
 			this._die();
 		} else if(this.position[1] > this.game.options.size[1] - this.options.radius) {
 			this._die();
+		}
+
+		if(!this.dead) {
+			this.game.itemManager.collide(this);
 		}
 	}
 
