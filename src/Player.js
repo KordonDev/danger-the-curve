@@ -54,6 +54,13 @@ class Player {
 		];
 	}
 
+	_posPlusVecVec(a, vec1, b, vec2) {
+		return [
+			this.position[0] + a * vec1[0] + b * vec2[0],
+			this.position[1] + a * vec1[1] + b * vec2[1],
+		];
+	}
+
 	tick(steps) {
 		steps = steps * this.options.speed;
 		const parts = Math.ceil(steps);
@@ -144,9 +151,9 @@ class Player {
 
 
 	_updateHitmap() {
-		this.game.setHitmap(this._posPlusVec(-this.options.radius, this.normVec), this.index);
+		this.game.setHitmap(this._posPlusVecVec(-1, this.vec, -this.options.radius, this.normVec), this.index);
 		this.game.setHitmap(this.position, this.index);
-		this.game.setHitmap(this._posPlusVec(this.options.radius, this.normVec), this.index);
+		this.game.setHitmap(this._posPlusVecVec(-1, this.vec, this.options.radius, this.normVec), this.index);
 	}
 
 }
