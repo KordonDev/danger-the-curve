@@ -145,8 +145,7 @@ class Player {
 			ctx.fillStyle = this.options.color;
 			ctx.fill();
 		}
-		this.playerElement.style.left = (this.position[0] - this.options.radius) + 'px';
-		this.playerElement.style.top = (this.position[1] - this.options.radius) + 'px';
+		this.playerElement.style.transform = 'translate(' + (this.position[0] - this.options.radius) + 'px' + ',' + (this.position[1] - this.options.radius) + 'px)';
 	}
 
 
