@@ -1,6 +1,6 @@
 'use strict';
 
-const ITEM_SIZE = 15;
+const items = require('./items/index');
 
 class ItemManager {
 	constructor(items, gameState) {
@@ -19,56 +19,8 @@ class ItemManager {
 	}
 
 	spawnItem(name) {
-		const item = {
-			x: Math.random() * this.game.options.size[0],
-			y: Math.random() * this.game.options.size[1],
-			name: name
-		};
-		switch(name) {
-			case 'bold':
-				item.callback = ((index) => {
-					this.game.players.forEach((player) => {
-						if(player.index !== index) {
-							player.options.radius += 2;
-						}
-					});
-					setTimeout(() => {
-						this.game.players.forEach((player) => {
-							if(player.index !== index) {
-								player.options.radius -= 2;
-							}
-						});
-					}, 10000);
-				});
-				break;
-			case 'fast':
-				item.callback = ((index) => {
-					this.game.players.forEach((player) => {
-						if(player.index === index) {
-							player.options.speed += 1;
-						}
-					});
-					setTimeout(() => {
-						this.game.players.forEach((player) => {
-							if(player.index === index) {
-								player.options.speed -= 1;
-							}
-						});
-					}, 10000);
-				});
-				break;
-		}
-		this._addItem(item);
-	}
-
-	_addItem(item) {
-		const element = document.createElement('div');
-		element.className = 'item';
-		item.element = element;
-		element.style.left = (item.x - ITEM_SIZE) + 'px';
-		element.style.top = (item.y - ITEM_SIZE) + 'px';
-		element.innerHTML = item.name.charAt(0);
-		this.game.options.container.appendChild(element);
+		const item = new items[name](this.game);
+		item.createElement();
 		this.spawnedItems.push(item);
 	}
 
@@ -77,7 +29,7 @@ class ItemManager {
 		for(let i = 0; i < items.length; i++) {
 			const item = items[i];
 			const distance = Math.sqrt(Math.pow(item.x - player.position[0], 2) + Math.pow(item.y - player.position[1], 2));
-			if(distance < ITEM_SIZE) {
+			if(distance < item.getSize() - player.options.radius) {
 				item.callback(player.index);
 				this.remove(i);
 			}

@@ -35,6 +35,12 @@ class Player {
 		this.playerElement = element;
 	}
 
+	setRadius(r) {
+		this.options.radius = r;
+		this.playerElement.style.height = this.options.radius * 2 + 'px';
+		this.playerElement.style.width = this.options.radius * 2 + 'px';
+	}
+
 	toStateString() {
 		return 'Player ' + (this.options.name ? this.options.name : this.index) + (this.dead ? ' (dead)'  : '') + ': ' + this.points + '<br />';
 	}
