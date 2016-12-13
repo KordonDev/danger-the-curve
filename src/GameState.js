@@ -64,7 +64,7 @@ class GameState {
 	}
 
 	_renderState() {
-		this.stateDisplay.innerHTML = this.players.map((player) => player.toStateString()).join('');
+		this.stateDisplay.innerHTML = this.players.sort((a, b) => a.points < b.points).map((player) => player.toStateString()).join('');
 	}
 
 	start() {
