@@ -30,7 +30,7 @@ class ItemManager {
 		for(let i = 0; i < items.length; i++) {
 			const item = items[i];
 			const distance = Math.sqrt(Math.pow(item.x - player.position[0], 2) + Math.pow(item.y - player.position[1], 2));
-			if(distance < item.getSize() - player.options.radius) {
+			if(distance - player.options.radius < item.getSize()) {
 				item.callback(player.index);
 				this.remove(i);
 			}

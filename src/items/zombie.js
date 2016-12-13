@@ -10,7 +10,7 @@ class ZombieItem extends Item {
 			index,
 			((player) => player.options.controls = ownPlayer.options.controls ),
 			((player) => player.options.controls = oldControls[player.index - 1]),
-			10000
+			5000
 		);
 	}
 

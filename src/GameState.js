@@ -30,6 +30,7 @@ class GameState {
 	}
 
 	_renderClasses() {
+	console.log(this.classes);
 		this.canvasElement.className = this.classes.join(' ');
 	}
 

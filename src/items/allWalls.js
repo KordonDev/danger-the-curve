@@ -4,12 +4,14 @@ const Item = require('./Item');
 
 class ClearItem extends Item {
 	callback(index) {
-		this.setForSelf(
-			index,
-			(() => { this.game.options.openWalls = true; this.game.addClass('blink-borders');  }),
-			(() => { this.game.options.openWalls = false; this.game.removeClass('blink-borders');  }),
-			10000
-		);
+		if(!this.game.options.openWalls) {
+			this.setForSelf(
+				index,
+				(() => { this.game.options.openWalls = true; this.game.addClass('blink-borders');  }),
+				(() => { this.game.options.openWalls = false; this.game.removeClass('blink-borders');  }),
+				10000
+			);
+		}
 	}
 
 	createElement() {
