@@ -1,0 +1,6 @@
+@keyframes blink {  
+  50% { background-color: black; }
+}
+.blink {
+  animation: blink 1s linear infinite;
+}

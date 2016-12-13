@@ -6,8 +6,8 @@ class WallsItem extends Item {
 	callback(index) {
 		this.setForSelf(
 			index,
-			((player) => player.options.openWalls = true),
-			((player) => player.options.openWalls = false),
+			((player) => { player.options.openWalls = true; player.addClass('blink'); }),
+			((player) => { player.options.openWalls = false; player.removeClass('blink'); }),
 			10000
 		);
 	}

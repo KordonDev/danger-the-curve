@@ -8,6 +8,7 @@ class Player {
 		this.game = gameState;
 		this.index = index;
 		this.points = 0;
+		this.classes = (this.options.classes ? this.options.classes : []).concat(['player']);
 
 		this.initPosition();
 
@@ -25,14 +26,28 @@ class Player {
 		this.dead = false;
 	}
 
+	removeClass(clazz) {
+		this.classes.splice(this.classes.indexOf(clazz), 1);
+		this._renderClasses();
+	}
+
+	addClass(clazz) {
+		this.classes.push(clazz);
+		this._renderClasses();
+	}
+
+	_renderClasses() {
+		this.playerElement.className = this.classes.join(' ');
+	}
+
 	_registerPlayerElement() {
 		const element = document.createElement('div');
-		element.className = 'player';
 		element.style.height = this.options.radius * 2 + 'px';
 		element.style.width = this.options.radius * 2 + 'px';
 		element.style.backgroundColor = this.options.color;
 		this.game.options.container.appendChild(element);
 		this.playerElement = element;
+		this._renderClasses();
 	}
 
 	setRadius(r) {
