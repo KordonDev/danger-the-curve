@@ -17,9 +17,10 @@ class Item {
 
 	reset() {
 		if(this.toInvokeLater) {
+		console.log(this.toInvokeLater);
 			window.clearTimeout(this.toInvokeLater);
 			this.toInvokeLaterCallback();
-			delete this.toInvokeLater;
+			this.toInvokeLater = undefined;
 		}
 	}
 
@@ -35,6 +36,7 @@ class Item {
 					resetFn(player);
 				}
 			});
+			this.toInvokeLater = undefined;
 		}).bind(this);
 		this.toInvokeLater = setTimeout(this.toInvokeLaterCallback, time);
 	}
