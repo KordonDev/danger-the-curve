@@ -120,14 +120,27 @@ class Player {
 		const nextCoordRight = this._posPlusVec(-this.options.radius - 1.45, this.normVec);
 		if(this.game.getHitmap(nextCoord) || this.game.getHitmap(nextCoordLeft) || this.game.getHitmap(nextCoordRight)) {
 			this._die();
-		} else if(this.position[0] < this.options.radius) {
-			this._die();
-		} else if(this.position[0] > this.game.options.size[0] - this.options.radius) {
-			this._die();
-		} else if(this.position[1] < this.options.radius) {
-			this._die();
-		} else if(this.position[1] > this.game.options.size[1] - this.options.radius) {
-			this._die();
+		}
+		if(!this.game.options.openWalls) {
+			if(this.position[0] < this.options.radius) {
+				this._die();
+			} else if(this.position[0] > this.game.options.size[0] - this.options.radius) {
+				this._die();
+			} else if(this.position[1] < this.options.radius) {
+				this._die();
+			} else if(this.position[1] > this.game.options.size[1] - this.options.radius) {
+				this._die();
+			}
+		} else {
+			if(this.position[0] < 0) {
+				this.position[0] = this.game.options.size[0];
+			} else if(this.position[0] > this.game.options.size[0]) {
+				this.position[0] = 0;
+			} else if(this.position[1] < 0) {
+				this.position[1] = this.game.options.size[1];
+			} else if(this.position[1] > this.game.options.size[1]) {
+				this.position[1] = 0;
+			}
 		}
 
 		if(!this.dead) {
