@@ -18,6 +18,7 @@ startButton.addEventListener('click', () => {
 	}, userConfig));
 
 	game.start();
+	startButton.blur();
 });
 
 function resetApp() {
