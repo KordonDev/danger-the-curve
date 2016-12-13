@@ -121,7 +121,7 @@ class Player {
 		if(this.game.getHitmap(nextCoord) || this.game.getHitmap(nextCoordLeft) || this.game.getHitmap(nextCoordRight)) {
 			this._die();
 		}
-		if(!this.game.options.openWalls) {
+		if(!this.game.options.openWalls && !this.options.openWalls) {
 			if(this.position[0] < this.options.radius) {
 				this._die();
 			} else if(this.position[0] > this.game.options.size[0] - this.options.radius) {
