@@ -14,7 +14,7 @@ startButton.addEventListener('click', () => {
 	const userConfig = JSON.parse(configArea.value);
 	const game = new GameState(Object.assign({
 		container: container,
-		size: [1000, 400]
+		size: [window.innerWidth - 200, window.innerHeight]
 	}, userConfig));
 
 	game.start();
