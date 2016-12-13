@@ -17,7 +17,6 @@ class Item {
 
 	reset() {
 		if(this.toInvokeLater) {
-		console.log(this.toInvokeLater);
 			window.clearTimeout(this.toInvokeLater);
 			this.toInvokeLaterCallback();
 			this.toInvokeLater = undefined;

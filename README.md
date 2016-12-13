@@ -23,7 +23,9 @@ The following items exist:
 - bold: Other players get bigger
 - fast: Own player gets faster
 - switch: Other players controls are reversed
+- clear: Clears screen
 - walls: Own player can pass through walls
+- allWalls: All players can pass through walls
 - zombie: Own player controlls all players
 
 The following world-options exist:

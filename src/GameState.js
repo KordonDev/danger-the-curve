@@ -15,6 +15,22 @@ class GameState {
 		this._registerKeymap();
 		this._registerCanvas();
 		this._registerStateDisplay();
+		this.classes = [];
+	}
+
+	//TODO refactor this for GameState, Player and items at once
+	removeClass(clazz) {
+		this.classes.splice(this.classes.indexOf(clazz), 1);
+		this._renderClasses();
+	}
+
+	addClass(clazz) {
+		this.classes.push(clazz);
+		this._renderClasses();
+	}
+
+	_renderClasses() {
+		this.canvasElement.className = this.classes.join(' ');
 	}
 
 	_registerKeymap() {
@@ -43,6 +59,7 @@ class GameState {
 		element.height = this.options.size[1];
 		this.options.container.appendChild(element);
 		this.options.drawContext = element.getContext('2d');
+		this.canvasElement = element;
 	}
 
 	_renderState() {
@@ -61,10 +78,14 @@ class GameState {
 	}
 
 	_reset() {
-		this.clearHitmap();
-		this.options.drawContext.clearRect(0, 0, this.options.size[0], this.options.size[1]);
+		this._clearTrails();
 		this.players.forEach((player) => player.initPosition());
 		this.itemManager.removeAll();
+	}
+
+	_clearTrails() {
+		this.clearHitmap();
+		this.options.drawContext.clearRect(0, 0, this.options.size[0], this.options.size[1]);
 	}
 
 	tick() {

@@ -4,3 +4,23 @@
 .blink {
   animation: blink 1s linear infinite;
 }
+
+.item-neutral {
+	background-color: blue;
+}
+
+@keyframes blinkborders {  
+  0% {
+  	    box-shadow: yellow 0px 0px 5px 0px inset;
+  }
+  50% { 
+  	    box-shadow: yellow 0px 0px 40px 10px inset;
+  }
+  100% {
+  	    box-shadow: yellow 0px 0px 5px 0px inset;
+  }
+}
+.blink-borders {
+  animation: blinkborders 1s linear infinite;
+}
+
