@@ -7,6 +7,7 @@ class ItemManager {
 		this.items = items;
 		this.game = gameState;
 		this.spawnedItems = [];
+		this.usedItems = [];
 	}
 
 	spawn() {
@@ -38,8 +39,20 @@ class ItemManager {
 	}
 
 	remove(index) {
-		this.spawnedItems[index].element.remove();	
-		this.spawnedItems.splice(index, 1);
+		const currentItem = this.spawnedItems[index];
+		currentItem.element.remove();	
+		this.usedItems.push(this.spawnedItems.splice(index, 1)[0]);
+	}
+
+
+	removeAll() {
+		for(let i = this.spawnedItems.length; i > 0; i--) {
+			this.remove(0);
+		}
+		for(let i = this.usedItems.length; i > 0; i--) {
+			this.usedItems[0].reset();
+			this.usedItems.splice(0, 1);
+		}
 	}
 }
 

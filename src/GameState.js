@@ -64,6 +64,7 @@ class GameState {
 		this.clearHitmap();
 		this.options.drawContext.clearRect(0, 0, this.options.size[0], this.options.size[1]);
 		this.players.forEach((player) => player.initPosition());
+		this.itemManager.removeAll();
 	}
 
 	tick() {
@@ -100,10 +101,8 @@ class GameState {
 	playerDied(index) {
 		let alive = 0;
 		this.players.forEach((player) => {
-			if(player.index !== index) {
-				player.points++;
-			}
 			if(!player.dead) {
+				player.points++;
 				alive++;
 			}
 		});

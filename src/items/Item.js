@@ -15,19 +15,28 @@ class Item {
 		return 15;
 	}
 
+	reset() {
+		if(this.toInvokeLater) {
+			window.clearTimeout(this.toInvokeLater);
+			this.toInvokeLaterCallback();
+			delete this.toInvokeLater;
+		}
+	}
+
 	_setAndReset(index, fn, resetFn, time, forSelf) {
 		this.game.players.forEach((player) => {
 			if((forSelf && player.index === index) || (!forSelf && player.index !== index)) {
 				fn(player);
 			}
 		});
-		this.toInvokeLater = setTimeout(() => {
+		this.toInvokeLaterCallback = (() => {
 			this.game.players.forEach((player) => {
 				if((forSelf && player.index === index) || (!forSelf && player.index !== index)) {
 					resetFn(player);
 				}
 			});
-		}, time);
+		}).bind(this);
+		this.toInvokeLater = setTimeout(this.toInvokeLaterCallback, time);
 	}
 
 	setForOthers(index, fn, resetFn, time) {
