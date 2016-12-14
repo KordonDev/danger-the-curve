@@ -30,7 +30,6 @@ class GameState {
 	}
 
 	_renderClasses() {
-	console.log(this.classes);
 		this.canvasElement.className = this.classes.join(' ');
 	}
 
@@ -64,7 +63,7 @@ class GameState {
 	}
 
 	_renderState() {
-		this.stateDisplay.innerHTML = this.players.sort((a, b) => a.points < b.points).map((player) => player.toStateString()).join('');
+		this.stateDisplay.innerHTML = this.players.slice().sort((a, b) => a.points < b.points).map((player) => player.toStateString()).join('');
 	}
 
 	start() {
