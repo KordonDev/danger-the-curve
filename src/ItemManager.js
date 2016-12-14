@@ -11,10 +11,14 @@ class ItemManager {
 	}
 
 	spawn() {
+		const randomValue = Math.random() * this.items.reduce((acc, item) => acc + item.spawnRate, 0);
+		let position = 0;
 		for(let i = 0; i < this.items.length; i++) {
 			const currentItem = this.items[i];
-			if(Math.random() < currentItem.spawnRate) {
+			position += currentItem.spawnRate;
+			if(randomValue < position) {
 				this.spawnItem(currentItem.name);
+				break;
 			}
 		}
 	}

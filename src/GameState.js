@@ -4,7 +4,6 @@ const Player = require('./Player');
 const ItemManager = require('./ItemManager');
 
 const TICK_TIME = 1000 / 60;
-const SPAWN_STEP_RATE = 0.1;
 
 class GameState {
 	constructor(options) {
@@ -88,6 +87,14 @@ class GameState {
 		this.options.drawContext.clearRect(0, 0, this.options.size[0], this.options.size[1]);
 	}
 
+	_spawnTick() {
+		if(!this.ticksToNextSpawn) {
+			this.ticksToNextSpawn = Math.round(Math.random() * this.options.maxTicksToNextItem);
+			this.itemManager.spawn();
+		}
+		this.ticksToNextSpawn--;
+	}
+
 	tick() {
 		if(this.running) {
 			requestAnimationFrame(this.tick.bind(this));
@@ -99,10 +106,7 @@ class GameState {
 		for(let i = 0; i < this.players.length; i++) {
 			this.players[i].tick(ticks);
 		}
-
-		if(Math.random() < SPAWN_STEP_RATE) {
-			this.itemManager.spawn();
-		}
+		this._spawnTick();
 
 		this.timestamp = newTimestamp;
 	}

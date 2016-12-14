@@ -32,3 +32,4 @@ The following items exist:
 
 The following world-options exist:
 - openWalls: boolean whether players can pass through walls by default
+- maxTicksToNextItem: number maximum number of game ticks till a new items spawns
