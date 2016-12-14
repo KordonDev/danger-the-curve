@@ -2,6 +2,8 @@
 
 This is a small and simple clone of www.achtungdiekurve.net or www.achtung-die-kurve.com or curvefever.com.
 
+To play it online: https://rawgit.com/flash1293/danger-the-curve/master/index.html
+
 ## Config
 
 Before starting the game you have to place a JSON-config into the given text-area.
