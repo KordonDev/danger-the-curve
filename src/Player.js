@@ -131,8 +131,8 @@ class Player {
 
 	_collide() {
 		const nextCoord = this._posPlusVec(this.options.radius + 1, this.vec);
-		const nextCoordLeft = this._posPlusVec(this.options.radius + 1.45, this.normVec);
-		const nextCoordRight = this._posPlusVec(-this.options.radius - 1.45, this.normVec);
+		const nextCoordLeft = this._posPlusVec(this.options.radius + 1, this.normVec);
+		const nextCoordRight = this._posPlusVec(-this.options.radius - 1, this.normVec);
 		if(this.game.getHitmap(nextCoord) || this.game.getHitmap(nextCoordLeft) || this.game.getHitmap(nextCoordRight)) {
 			this._die();
 		}
