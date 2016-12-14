@@ -7,6 +7,10 @@ const TICK_TIME = 1000 / 60;
 
 class GameState {
 	constructor(options) {
+        // converts all keys to lower case
+        options.players.forEach((player) => {
+            player.controls = player.controls.map((key) => key.toLowerCase());
+        });
 		this.options = options;
 		this.hitMap = new Uint8Array(options.size[0] * options.size[1]);
 		this.players = this.options.players.map((playerConfig, i) => { return new Player(playerConfig, this, i + 1); });
@@ -35,14 +39,14 @@ class GameState {
 	_registerKeymap() {
 		this.keyMap = {};
 		window.addEventListener('keydown', (event) => {
-			this.keyMap[event.key] = true;
-			if(this.roundOver && event.key === 'r') {
+			this.keyMap[event.key.toLowerCase()] = true;
+			if(this.roundOver && event.key.toLowerCase() === 'r') {
 				this.roundOver = false;
 				this._reset();
 				this.start();
 			}
 		});
-		window.addEventListener('keyup', (event) => { this.keyMap[event.key] = false; });
+		window.addEventListener('keyup', (event) => { this.keyMap[event.key.toLowerCase()] = false; });
 	}
 
 	_registerStateDisplay() {
