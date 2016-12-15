@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 const Player = require('./Player');
 const ItemManager = require('./ItemManager');
@@ -7,10 +7,10 @@ const TICK_TIME = 1000 / 60;
 
 class GameState {
 	constructor(options) {
-        // converts all keys to lower case
-        options.players.forEach((player) => {
-            player.controls = player.controls.map((key) => key.toLowerCase());
-        });
+		// converts all keys to lower case
+		options.players.forEach((player) => {
+			player.controls = player.controls.map((key) => key.toLowerCase());
+		});
 		this.options = options;
 		this.hitMap = new Uint8Array(options.size[0] * options.size[1]);
 		this.players = this.options.players.map((playerConfig, i) => { return new Player(playerConfig, this, i + 1); });
