@@ -1,6 +1,6 @@
 # Danger the curve
 
-This is a small and simple clone of www.achtungdiekurve.net or www.achtung-die-kurve.com or curvefever.com.
+This is a small and simple clone of www.achtungdiekurve.net or www.achtung-die-kurve.com or www.curvefever.com.
 
 To play it online: https://rawgit.com/flash1293/danger-the-curve/master/index.html
 
